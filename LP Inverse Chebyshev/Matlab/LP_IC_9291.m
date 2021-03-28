@@ -1,6 +1,4 @@
 %% LowPass Filter - Inverse Chebyshev
-% Aforozi Thomais
-% AEM 9291
 
 %% specifications
 % aem = [a1,a2,a3,a4]
@@ -84,7 +82,7 @@ z2 = sec(3*pi/(2*n));
 
 %% Poles - zeros grouping and LPN filter design 
 % a3 = 9 -> 7.23
-%% Unit (É) (LPN) - poles 4,5 - zero z1 
+%% Unit (Ã‰) (LPN) - poles 4,5 - zero z1 
 un1_w0 = w04;
 un1_wz = z1; % wz>w0
 un1_Q = Q4;
@@ -101,7 +99,7 @@ k1_low = k1_high*(un1_wz/un1_w0)^2;
 
 un1_kf = ws*un1_w0;
 
-% scaling for C = 0.1ìF
+% scaling for C = 0.1Ã¬F
 un1_km = un1_C/(ws*un1_w0*10^(-7));
 
 un1_C_new = 10^(-7);
@@ -117,7 +115,7 @@ un1_w0 = un1_w0*ws;
 % (7-121)
 T1 = tf([k1_high 0 k1_high*un1_wz^2],[1 (un1_w0/un1_Q) un1_w0^2]);
 
-%% Unit (ÉI) (LPN) - poles 2,3 - zero z2 (in a similar way) 
+%% Unit (Ã‰I) (LPN) - poles 2,3 - zero z2 (in a similar way) 
 un2_w0 = w02;
 un2_wz = z2; % wz>w0
 un2_Q = Q2;
@@ -134,7 +132,7 @@ k2_low = k2_high*(un2_wz/un2_w0)^2;
 
 un2_kf = ws*un2_w0;
 
-% scaling for C = 0.1ìF
+% scaling for C = 0.1Ã¬F
 un2_km = un2_C/(ws*un2_w0*10^(-7));
 
 un2_C_new = 10^(-7);
@@ -150,7 +148,7 @@ un2_w0 = un2_w0*ws;
 % (7-121)
 T2 = tf([k2_high 0 k2_high*un2_wz^2],[1 (un2_w0/un2_Q) un2_w0^2]);
 
-%% Unit (ÉÉÉ) (first order) - Real pole
+%% Unit (Ã‰Ã‰Ã‰) (first order) - Real pole
 
 un3_w0 = w01;
 un3_C = 1;
@@ -198,7 +196,7 @@ plot_transfer_function(inv(T), [10 fp f_hp fs]);
 plot_transfer_function(invTbefore, [10 fp f_hp fs]);
 
 %% Periodic input signal 
-% a4 = 1 -> pulse wave ô = 0.4Ô
+% a4 = 1 -> pulse wave Ã´ = 0.4Ã”
 % basic frequency 2kHz
 
 f_sig = 2*1000;
