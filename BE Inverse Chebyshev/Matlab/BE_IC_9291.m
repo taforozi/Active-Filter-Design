@@ -1,6 +1,4 @@
 %% Band Elimination Filter - Inverse Chebyshev
-% Aforozi Thomais
-% AEM 9291
 
 %% specifications
 % aem = [a1,a2,a3,a4]
@@ -10,7 +8,7 @@ f0 = 1.8*1000; %(kHz)
 w0 = 2*pi*f0;
 % w0 = sqrt(w1*w2) = sqrt(w3*w4) same
 
-% Pass band (from 0 to ˘1 & from ˘2 to infinity)
+% Pass band (from 0 to √π1 & from √π2 to infinity)
 f1 = 1200 + 25*(9-aem(4)); %Hz
 w1 = 2*pi*f1;
 
@@ -171,7 +169,7 @@ wmega2_z2 = w0/sqrt(x2);
 %% Zero-pole grouping and unit design
 % a4 = 1 -> 7.21 & 7.23
 
-%% Unit (…) (LPN) - (7.23)
+%% Unit (I) (LPN) - (7.23)
 % w12_01 < wmega1_z1
 
 un1_w0 = w12_01;
@@ -190,7 +188,7 @@ un1_k_high = 1/(1 + un1_R3);
 un1_k_low = un1_k_high*(un1_wz/un1_w0)^2;
 
 un1_kf = un1_w0;
-% klimakopoihsh gia C = 0.1ÏF (a3 = 9)
+% klimakopoihsh gia C = 0.1√¨F (a3 = 9)
 un1_km = un1_C/(0.1*10^(-6)*un1_kf);
 
 un1_C_new = 0.1*10^(-6);
@@ -203,7 +201,7 @@ un1_R5_new = un1_km*un1_R5;
 % sel 13/29
 T1 = tf([un1_k_high 0 un1_k_high*un1_wz^2],[1 un1_w0/un1_Q un1_w0^2]);
 
-%% Unit (……) (HPN) - (7.21)
+%% Unit (II) (HPN) - (7.21)
 % w12_02 > wmega1_z2
 
 un2_w0 = w12_02;
@@ -224,7 +222,7 @@ un2_C = 1/(un2_Q*(2 + un2_k1));
 un2_C1 = un2_k1*un2_C;
 
 un2_kf = un2_w0;
-% klimakopoihsh gia C = 0.1ÏF (a3 = 9)
+% scaling for C = 0.1√¨F (a3 = 9)
 un2_km = un2_C/(un2_kf*0.1*10^(-6));
 
 un2_C_new = 0.1*10^(-6);
@@ -235,11 +233,11 @@ un2_R4_new = un2_km * un2_R4;
 un2_C1_new = un2_k1*un2_C_new;
 
 
-% (7-134) ﬁ
+% (7-134) √û
 T2 = tf([un2_k_high 0 un2_k_high*un2_wz^2],[1 un2_w0/un2_Q un2_w0^2]);
 
 
-%% Unit (………) (LPN) - (7.23)
+%% Unit (III) (LPN) - (7.23)
 % w34_01 < wmega2_z1
 
 un3_w0 = w34_01;
@@ -258,7 +256,7 @@ un3_k_high = 1/(1 + un3_R3);
 un3_k_low = un3_k_high*(un3_wz/un3_w0)^2;
 
 un3_kf = un3_w0;
-% scaling for C = 0.1ÏF (a3 = 9)
+% scaling for C = 0.1√¨F (a3 = 9)
 un3_km = un3_C/(0.1*10^(-6)*un3_kf);
 
 un3_C_new = 0.1*10^(-6);
@@ -270,7 +268,7 @@ un3_R5_new = un3_km*un3_R5;
 
 T3 = tf([un3_k_high 0 un3_k_high*un3_wz^2],[1 un3_w0/un3_Q un3_w0^2]);
 
-%% Unit (…V) (HPN) - (7.21)
+%% Unit (IV) (HPN) - (7.21)
 % w34_02 > wmega2_z2
 
 un4_w0 = w34_02;
@@ -291,7 +289,7 @@ un4_C = 1/(un4_Q*(2 + un4_k1)); % (7-140)
 un4_C1 = un4_k1*un4_C;
 
 un4_kf = un4_w0;
-% scaling for C = 0.1ÏF (a3 = 9)
+% scaling for C = 0.1√¨F (a3 = 9)
 un4_km = un4_C/(un4_kf*0.1*10^(-6));
 
 un4_C_new = 0.1*10^(-6);
@@ -326,13 +324,13 @@ plot_transfer_function(T3,[f0 f1 f2 f3 f4]);
 plot_transfer_function(T4,[f0 f1 f2 f3 f4]);
 plot_transfer_function(Ta,[f0 f1 f2 f3 f4]);
 
-% ¡¸Û‚ÂÛÁ
+% √Å√∞√º√≥√¢√•√≥√ß
 plot_transfer_function(inv(Ta), [f0 f1 f2 f3 f4]);
 
 plot_transfer_function(inv(T), [10 f0 f1 f2 f3 f4]);
 
 %% Periodic input signal
-% a4 = 1 -> ·)
+% a4 = 1 -> √°)
 T_period = 20*1/2000; 
 f_deigm = 10^6; % sampling frequency
 dt_deigm = 1/f_deigm;
