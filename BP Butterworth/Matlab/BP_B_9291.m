@@ -1,6 +1,5 @@
 %% BandPass Filter - Butterworth
-% Aforozi Thomais
-% AEM 9291
+
 
 %% specifications
 % aem = [a1,a2,a3,a4]
@@ -86,7 +85,7 @@ W23 = k23 + sqrt(k23^2 - 1);
 w23_02 = W23*w0; % (11-35) 
 w23_01 = (1/W23)*w0; 
 
-% angles ø
+% angles psi
 psi_23 = acosd(1/(2*Q23));
 
 % first pair of poles
@@ -130,7 +129,7 @@ w2_45 = w45_02*sind(psi_45);
 % Unit IV: poles of s4,5 -> w1,Q45
 % Unit V: poles of s4,5 -> w2,Q45
 
-%% Unit (É) 
+%% Unit (I) 
 un1_Q = Q1;
 un1_w0 = w0;
 un1_R1 = 1/(2*un1_Q);
@@ -138,7 +137,7 @@ un1_R2 = 2*un1_Q;
 un1_C1 = 1;
 un1_C2 = 1;
 
-% scaling for C = 1.0ìF = 10^(-6) (a2 = 2)
+% scaling for C = 1.0Ã¬F = 10^(-6) (a2 = 2)
 un1_kf = w0;
 un1_km = un1_C1/(w0*10^(-6));
 
@@ -149,7 +148,7 @@ un1_C2_new = un1_C1_new;
 
 T1 = tf([(-2*un1_Q*un1_w0) 0], [1 (un1_w0/un1_Q) un1_w0^2]); 
 
-%% Unit (ÉÉ)
+%% Unit (II)
 un2_Q = Q23;
 un2_w0 = w23_01;
 un2_kf = un2_w0;
@@ -169,7 +168,7 @@ un2_R2_new = un2_R2 * un2_km;
 % (11-57)
 T2 = tf([(-2*un2_Q*un2_w0) 0], [1 (un2_w0/un2_Q) un2_w0^2]); 
 
-%% Unit (ÉÉÉ)
+%% Unit (III)
 un3_Q = Q23; 
 un3_w0 = w23_02;
 un3_kf = un3_w0;
@@ -189,7 +188,7 @@ un3_R2_new = un3_km*un3_R2;
 % (11-57)
 T3 = tf([(-2*un3_Q*un3_w0) 0], [1 (un3_w0/un3_Q) un3_w0^2]); 
 
-%% Unit (ÉV)
+%% Unit (IV)
 un4_Q = Q45;
 un4_w0 = w45_01;
 un4_kf = un4_w0;
@@ -231,8 +230,8 @@ T5 = tf([(-2*un5_Q*un5_w0) 0], [1 (un5_w0/un5_Q) un5_w0^2]);
 
 %% Gain setting - Desired gain 10dB (a4 = 1)
 % total response gain 
-% |T1(jù0)|*|T2(jù0)|*|T3(jù0)|*|T4(jù0)|*|T5(jù0)|
-% (11-58) or norm(evalfr(Tf, i*ù0)) for each tf
+% |T1(jÃ¹0)|*|T2(jÃ¹0)|*|T3(jÃ¹0)|*|T4(jÃ¹0)|*|T5(jÃ¹0)|
+% (11-58) or norm(evalfr(Tf, i*Ã¹0)) for each tf
 T1_norm = sqrt((2*un1_Q*un1_w0*w0)^2/((un1_w0^2-w0^2)^2 +((un1_w0/un1_Q)^2)*w0^2));
 T2_norm = sqrt((2*un2_Q*un2_w0*w0)^2/((un2_w0^2-w0^2)^2 +((un2_w0/un2_Q)^2)*w0^2));
 T3_norm = sqrt((2*un3_Q*un3_w0*w0)^2/((un3_w0^2-w0^2)^2 +((un3_w0/un3_Q)^2)*w0^2));
@@ -267,7 +266,7 @@ inv_Tb = inv(T_before);
 plot_transfer_function(inv_Tb, [f0 f1 f2 f3 f4]);
 
 %% Periodic input signal - Fourier Spectrum
-% a4 = 1 -> ã)
+% a4 = 1 -> Ã£)
 
 T_period = 20*1/2000; 
 f_deigm = 10^6; % sampling frequency
