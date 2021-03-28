@@ -6,3 +6,4 @@ This is the assignment of the course _Active Filter Design_ that took place at A
 * BandElimination: Inverse Chebyshev 
 * HighPass:        Chebyshev 
 
+The final report is also mentioned in Greek.
