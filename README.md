@@ -7,3 +7,6 @@ The assignment of the course _Active Filter Design_ that took place at Aristotle
 * HighPass:        Chebyshev 
 
 The final report is also mentioned in Greek.
+
+## Contact
+If there are any questions, feel free to [contact me](mailto:thomi199822@gmail.com?subject=[GitHub]%20Source%20Han%20Sans). 
